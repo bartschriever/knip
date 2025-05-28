@@ -1,6 +1,10 @@
 {
-  "name": "@fixtures/tools",
+  "name": "@fixtures/workspaces-binary-resolution__tools",
+  "main": "./index.js",
+  "scripts": {
+    "build": "tsc"
+  },
   "devDependencies": {
     "typescript": "*"
   }
-} 
+}

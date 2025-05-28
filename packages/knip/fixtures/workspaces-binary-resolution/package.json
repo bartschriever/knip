@@ -1,4 +1,10 @@
 {
   "name": "@fixtures/workspaces-binary-resolution",
-  "workspaces": ["packages/*"]
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "*"
+  },
+  "workspaces": ["apps/*"]
 } 

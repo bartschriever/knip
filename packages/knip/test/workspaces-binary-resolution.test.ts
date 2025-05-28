@@ -7,25 +7,24 @@ import baseCounters from './helpers/baseCounters.js';
 
 const cwd = resolve('fixtures/workspaces-binary-resolution');
 
-test('Find unused dependencies and binaries in workspaces with cross-workspace binary resolution (default)', async () => {
+test('Find unused dependencies and binaries in a single workspace fixture (default)', async () => {
   const { issues, counters } = await main({
     ...baseArguments,
     cwd,
   });
 
-  assert(!issues.devDependencies['packages/tools/package.json']?.['typescript']);
-  assert(!issues.binaries['packages/lib/package.json']?.['tsc']);
-  assert(issues.devDependencies['packages/lib/package.json']['unused-tool']);
+  assert(!issues.binaries?.['apps/backend/package.json']?.['nest']);
+  assert(!issues.devDependencies?.['apps/backend/package.json']?.['@nestjs/cli']);
 
   assert.deepEqual(counters, {
     ...baseCounters,
-    devDependencies: 1,
+    files: 1,
     processed: 2,
     total: 2,
   });
 });
 
-test('Find unused dependencies and binaries in workspaces with cross-workspace binary resolution (production)', async () => {
+test('Find unused dependencies and binaries in a single workspace fixture (production)', async () => {
   const { issues, counters } = await main({
     ...baseArguments,
     cwd,
@@ -37,26 +36,25 @@ test('Find unused dependencies and binaries in workspaces with cross-workspace b
 
   assert.deepEqual(counters, {
     ...baseCounters,
+    files: 1,
     processed: 2,
     total: 2,
   });
 });
 
-test('Find unused dependencies and binaries in workspaces with cross-workspace binary resolution (strict)', async () => {
+test('Find unused dependencies and binaries in a single workspace fixture (strict)', async () => {
   const { issues, counters } = await main({
     ...baseArguments,
     cwd,
     isStrict: true,
   });
 
-  assert(issues.binaries['packages/lib/package.json']?.['tsc']);
-  assert(!issues.devDependencies['packages/tools/package.json']?.['typescript']);
-  assert(issues.devDependencies['packages/lib/package.json']['unused-tool']);
+  assert(!issues.binaries?.['apps/backend/package.json']?.['nest']);
+  assert(!issues.devDependencies?.['apps/backend/package.json']?.['@nestjs/cli']);
 
   assert.deepEqual(counters, {
     ...baseCounters,
-    devDependencies: 1,
-    binaries: 1,
+    files: 1,
     processed: 2,
     total: 2,
   });

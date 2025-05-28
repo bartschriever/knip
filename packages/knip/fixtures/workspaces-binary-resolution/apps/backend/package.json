@@ -1,0 +1,11 @@
+{
+  "name": "@fixtures/workspaces-binary-resolution__backend",
+  "scripts": {
+    "build": "nest build",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "*",
+    "typescript": "*"
+  }
+} 
