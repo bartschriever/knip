@@ -1,7 +1,7 @@
 import type { CommandLineOptions } from '../../src/types/cli.js';
 import { join } from '../../src/util/path.js';
 
-const cwd = process.cwd();  // This will be /Users/bart.schriever/knip/packages/knip
+const cwd = process.cwd();
 const cacheLocation = join(cwd, 'node_modules', '.cache', 'knip');
 
 const baseArguments = {
@@ -18,6 +18,7 @@ const baseArguments = {
   isFilesShorthand: false,
   isFix: false,
   isFormat: false,
+  isDisableConfigHints: false,
   isIncludeEntryExports: false,
   isIncludeLibs: false,
   isIsolateWorkspaces: false,
